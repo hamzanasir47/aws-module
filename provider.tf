@@ -8,7 +8,7 @@ terraform {
 }
 
 # Configure the Microsoft Azure Provider
-provider "aws" {
+#provider "aws" {
   #version = "3.0.0"
   #use_azure_cli = true
-}
+#}
