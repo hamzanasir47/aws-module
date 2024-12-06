@@ -24,9 +24,8 @@ jobs:
     steps:
       - name: Send Repository Dispatch Event
         uses: actions/github-script@v6
-        env:
-          github-token: ${{ secrets.REMOTE_REPO }}
         with:
+          github-token: ${{ secrets.REMOTE_REPO }}
           script: |
             github.rest.repos.createDispatchEvent({
               owner: 'hamzanasir47',  //# Replace with target repo owner
