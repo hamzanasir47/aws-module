@@ -2,7 +2,7 @@ name: Trigger Target Repo Workflow on Dependabot Update
 
 on:
   pull_request:
-    types: [synchronize]
+    types: [open, synchronize, closed]
     branches:
       - main # Branch where Dependabot operates
   #push:
@@ -19,7 +19,7 @@ permissions:
 
 jobs:
   notify-target-repo:
-    if: ${{ github.actor == 'dependabot[bot]' }} # Ensure only Dependabot triggers this job
+    # if: ${{ github.actor == 'dependabot[bot]' }} # Ensure only Dependabot triggers this job
     runs-on: ubuntu-latest
     steps:
       - name: Send Repository Dispatch Event
