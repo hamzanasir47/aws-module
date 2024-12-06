@@ -8,7 +8,6 @@ terraform {
 }
 
 # Configure the Microsoft Azure Provider
-#provider "aws" {
-  #version = "3.0.0"
-  #use_azure_cli = true
-#}
+provider "aws" {
+  region = "us-east-1"
+}
