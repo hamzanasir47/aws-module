@@ -1,14 +1,14 @@
 terraform {
   required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "4.12.0"
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.0.0"
     }
   }
 }
 
 # Configure the Microsoft Azure Provider
-provider "azurerm" {
+provider "aws" {
   features {}
   #version = "3.0.0"
   #use_azure_cli = true

@@ -1,30 +1,18 @@
-resource "azurerm_virtual_network" "main" {
-  name                = var.vnet_name
-  location            = var.location
-  resource_group_name = var.resource_group_name
-  address_space       = var.address_space
-  tags                = var.tags
-}
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
 
-resource "azurerm_subnet" "main" {
-  count                   = length(var.subnets)
-  name                    = var.subnets[count.index].name
-  resource_group_name     = var.resource_group_name
-  virtual_network_name    = azurerm_virtual_network.main.name
-  address_prefixes        = var.subnets[count.index].address_prefixes
+  name = "my-vpc"
+  cidr = "10.0.0.0/16"
 
-}
+  azs             = ["eu-west-1a", "eu-west-1b", "eu-west-1c"]
+  private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
-resource "azurerm_network_security_group" "main" {
-  count                = length(var.subnets)
-  name                 = "${var.subnets[count.index].name}-nsg"
-  location             = var.location
-  resource_group_name  = var.resource_group_name
-  tags                 = var.tags
-}
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
 
-resource "azurerm_subnet_network_security_group_association" "main" {
-  count                = length(var.subnets)
-  subnet_id            = azurerm_subnet.main[count.index].id
-  network_security_group_id = azurerm_network_security_group.main[count.index].id
+  tags = {
+    Terraform = "true"
+    Environment = "dev"
+  }
 }
