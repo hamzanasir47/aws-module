@@ -25,7 +25,7 @@ jobs:
       - name: Send Repository Dispatch Event
         uses: actions/github-script@v6
         env:
-          GITHUB_TOKEN: ${{ secrets.REMOTE_REPO }}
+          github-token: ${{ secrets.REMOTE_REPO }}
         with:
           script: |
             github.rest.repos.createDispatchEvent({
