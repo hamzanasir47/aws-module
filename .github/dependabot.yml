@@ -13,4 +13,4 @@ updates:
     ignore:
       - dependency-name: "aws" # Example: Ignore specific providers
         versions: ["<3.1.0"] # Example: Ignore versions lower than 3.0.0
-        time: "09:00"
+        time: "03:30"
