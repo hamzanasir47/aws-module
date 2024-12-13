@@ -1,9 +1,9 @@
 terraform {
   cloud {
         # organization = "" 
-        # workspaces {
+         workspaces {
         #     project = ""
-        #     name = ""
-        # }
+             name = "hamzanasir47-terraform-testing-hamzanasir47-aws-module-examples--"
+         }
     }
 }
